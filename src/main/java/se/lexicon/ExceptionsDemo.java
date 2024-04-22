@@ -1,5 +1,7 @@
 package se.lexicon;
 
+import se.lexicon.exception.InsufficientFundsException;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -33,7 +35,22 @@ public class ExceptionsDemo {
 
         //readTextFile();
 
-        writeTextToFile();
+        //writeTextToFile();
+
+        BankAccount account1 = new BankAccount(100);
+        BankAccount account2 = new BankAccount(100);
+        try {
+            //account1.deposit(200);
+            account1.withdraw(500);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }  catch(InsufficientFundsException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.description());
+        }
+
+
 
 
     }
@@ -166,8 +183,6 @@ public class ExceptionsDemo {
             e.printStackTrace();
         }
     }
-
-
 
 
 }
